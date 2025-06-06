@@ -65,7 +65,7 @@ echo "[*] Uploading SSH public key to EC2 (if not already added)..."
 ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "$EC2_USER@$EC2_HOST" "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && grep -qxF '$PUB_KEY' ~/.ssh/authorized_keys || echo '$PUB_KEY' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh"
 
 # === STEP 6: Start reverse SSH tunnel ===
-REVERSE_CMD="autossh -M 0 -f -N -R 0.0.0.0:$REMOTE_PORT:localhost:$LOCAL_PORT -i $SSH_KEY $EC2_USER@$EC2_HOST"
+REVERSE_CMD="autossh -M 0 -f -N -R 0.0.0.0:$REMOTE_PORT:localhost:$LOCAL_PORT -i $SSH_KEY $EC2_USER@[$EC2_HOST]"
 
 if ! pgrep -f "$REVERSE_CMD" > /dev/null; then
   echo "[*] Starting reverse SSH tunnel to $EC2_HOST:$REMOTE_PORT"
