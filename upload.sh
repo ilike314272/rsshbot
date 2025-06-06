@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.ssh-tunnel.env
+source /home/lawbench/rsshbot/ssh-tunnel.env
 
 COMMIT_MSG="Update IPs on $(hostname) at $(date)"
 
@@ -16,6 +16,6 @@ IPV4=$(curl -s https://api.ipify.org)
 echo "IPv4: $IPV4" > "public_ips_$(hostname).txt"
 
 git pull origin "$GIT_BRANCH"
-git add "$IP_FILE"
+git add "public_ips_$(hostname).txt"
 git commit -m "$COMMIT_MSG"
 git push origin "$GIT_BRANCH"
