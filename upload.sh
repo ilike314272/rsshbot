@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source ~/ssh-tunnel.env
+source ~/rrshbot/ssh-tunnel.env
 
 HOST_ID=$(hostname)
 MACHINE_FOLDER="$REPO_DIR/$HOST_ID"
